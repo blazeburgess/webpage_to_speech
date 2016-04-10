@@ -19,7 +19,8 @@ url = (parser.parse_args()).url
 page = requests.get(url)
 
 soup = BeautifulSoup(page.text, 'html.parser')
-text = soup.get_text()
+#text = soup.get_text()
+text = soup.title.string + "\n" + soup.body.getText()
 name = "/tmp/" + str(random.random() * (10**15)) + ".txt"
 
 f = open(name, 'w')
@@ -28,3 +29,5 @@ f.close()
 execute_unix("espeak -f %s -s 390 -w %s" % (name, name + ".wav"))
 
 execute_unix("xdg-open %s" % name + ".wav")
+execute_unix("rm %s %s" % (name, name + ".wav"))
+
