@@ -20,6 +20,21 @@ page = requests.get(url)
 
 soup = BeautifulSoup(page.text, 'html.parser')
 #text = soup.get_text()
+for tag in soup.select('script'):
+  tag.clear()
+for tag in soup.select('style'):
+  tag.clear()
+for tag in soup.select('nav'):
+  tag.clear()
+for tag in soup.select('header'):
+  tag.clear()
+for tag in soup.select('footer'):
+  tag.clear()
+#for tag in soup.select('form'):
+#  tag.clear()
+for tag in soup.select('select'):
+  tag.clear()
+
 text = soup.title.string + "\n" + soup.body.getText()
 name = "/tmp/" + str(random.random() * (10**15)) + ".txt"
 
